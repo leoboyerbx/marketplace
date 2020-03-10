@@ -1,3 +1,3 @@
 export const LANDING = '/'
-export const SIGNIN = '/signin'
-export const SIGNUP = '/signup'
+export const SIGN_IN = '/signin'
+export const SIGN_UP = '/signup'
