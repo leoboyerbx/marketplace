@@ -2,8 +2,9 @@ import * as ROUTES from '../../constants/Routes'
 import React, { Components } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu } from 'antd'
+import { withFirebase } from '../Firebase'
 
-export default function Navigation() {
+export function Navigation(props) {
     return (
         <Menu mode="horizontal" theme="dark"
         defaultSelectedKeys={['1']}
@@ -17,6 +18,9 @@ export default function Navigation() {
             <Menu.Item>
                 <Link to={ ROUTES.SIGN_UP }>Sign Up</Link>
             </Menu.Item>
+            <Menu.Item>
+                { props.firebase.loggedUser ? 'Non connecté' : 'Non Connecté' }
+            </Menu.Item>
         </Menu>
         // <div>
         //     <ul>
@@ -27,3 +31,5 @@ export default function Navigation() {
         // </div>
     )
 }
+
+export default withFirebase(Navigation)

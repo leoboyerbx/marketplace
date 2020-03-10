@@ -24,15 +24,7 @@ const SiteLayoutContent = styled.div`
 const firebase = new Firebase()
 
 function App() {
-  const [isLogged, setLogged] = useState(false)
-
-  function toLogIn () {
-    setLogged(true)
-  }
-  function toLogOut () {
-    setLogged(false)
-  }
-
+ 
   return (
     <FirebaseContext.Provider value={ firebase }>
       <Router>
