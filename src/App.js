@@ -9,6 +9,7 @@ import Home from './components/Home/Home';
 import Signin from './components/Signin/Signin'
 import Signup from './components/Signup/Signup'
 import Navigation from './components/Navigation/Navigation';
+import { AuthContext } from './Authorization'
 
 import { Layout } from 'antd';
 import styled from 'styled-components';
@@ -21,13 +22,18 @@ const SiteLayoutContent = styled.div`
   min-height: 280px;
 `
 
-export const AuthContext = React.createContext(null)
-
 function App() {
-  const {isLogged, setLogged} = useState(false)
+  const [isLogged, setLogged] = useState(false)
+
+  function toLogIn () {
+    setLogged(true)
+  }
+  function toLogOut () {
+    setLogged(false)
+  }
 
   return (
-    <AuthContext.Provider value={isLogged}>
+    <AuthContext.Provider value={{isLogged, toLogIn, toLogOut}}>
       <Router>
         <Layout>
           <Header>
@@ -40,7 +46,7 @@ function App() {
               </Route>
               
               <Route path={ ROUTES.SIGN_IN }>
-                <Signin />
+                  <Signin />
               </Route>
               <Route path={ ROUTES.SIGN_UP }>
                 <Signup />

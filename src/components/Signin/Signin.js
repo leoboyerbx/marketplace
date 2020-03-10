@@ -1,5 +1,6 @@
 import React, { Components } from 'react'
 import { Form, Input, Button, Checkbox } from 'antd'
+import { withAuth } from '../../Authorization';
 
 const layout = {
     labelCol: {
@@ -16,9 +17,9 @@ const layout = {
     },
   };
 
-export default function Signin() {
+function Signin(props) {
     const onFinish = values => {
-      console.log('Success:', values);
+      props.toLogIn()
     };
   
     const onFinishFailed = errorInfo => {
@@ -76,3 +77,5 @@ export default function Signin() {
     </div>
     );
   };
+
+export default withAuth(Signin)

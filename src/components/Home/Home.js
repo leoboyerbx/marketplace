@@ -1,11 +1,10 @@
 import React, { Components } from 'react'
-import { AuthContext } from '../../App'
+import { withAuth } from '../../Authorization'
 
-export default function Home(props) {
+export function Home(props) {
     
     return (
-        <AuthContext.Consumer>
-            <h1>{true ? 'Hello mec !' : 'Veuillez vouq connezter'}</h1>
-        </AuthContext.Consumer>
+        <h1>{props.isLogged ? "Bienvenue" : "Veuillez vous logger"}</h1>
     )
 }
+export default withAuth(Home)
