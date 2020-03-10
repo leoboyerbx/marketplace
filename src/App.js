@@ -9,10 +9,10 @@ import Home from './components/Home/Home';
 import Signin from './components/Signin/Signin'
 import Signup from './components/Signup/Signup'
 import Navigation from './components/Navigation/Navigation';
-import { AuthContext } from './Authorization'
 
 import { Layout } from 'antd';
 import styled from 'styled-components';
+import Firebase, { FirebaseContext } from './components/Firebase';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -21,6 +21,7 @@ const SiteLayoutContent = styled.div`
   padding: 24px;
   min-height: 280px;
 `
+const firebase = new Firebase()
 
 function App() {
   const [isLogged, setLogged] = useState(false)
@@ -33,7 +34,7 @@ function App() {
   }
 
   return (
-    <AuthContext.Provider value={{isLogged, toLogIn, toLogOut}}>
+    <FirebaseContext.Provider value={ firebase }>
       <Router>
         <Layout>
           <Header>
@@ -61,7 +62,7 @@ function App() {
           </Footer>
         </Layout>
       </Router>
-    </AuthContext.Provider>
+    </FirebaseContext.Provider>
   );
 }
 

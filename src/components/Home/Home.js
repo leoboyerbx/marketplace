@@ -1,5 +1,5 @@
 import React, { Components } from 'react'
-import { withAuth } from '../../Authorization'
+import { withFirebase } from '../Firebase'
 
 export function Home(props) {
     
@@ -7,4 +7,4 @@ export function Home(props) {
         <h1>{props.isLogged ? "Bienvenue" : "Veuillez vous logger"}</h1>
     )
 }
-export default withAuth(Home)
+export default withFirebase(Home)
