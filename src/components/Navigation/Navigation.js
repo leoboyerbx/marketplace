@@ -6,8 +6,6 @@ import { withAuth } from '../Authentication'
 
 export function Navigation(props) {
 
-    console.log(props.location.pathname)
-
     if (props.auth.loggedUser) {
         return (
             <Menu mode="horizontal" theme="dark"
