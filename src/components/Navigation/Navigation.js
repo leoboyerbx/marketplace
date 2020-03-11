@@ -16,22 +16,22 @@ export function Navigation(props) {
                     <Link to={ ROUTES.LANDING }>Home</Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <Link to={ ROUTES.SIGN_IN } onClick={props.auth.signOut}>Sign out {props.auth.loggedUser.email}</Link>
+                    <Link to={ ROUTES.SIGN_IN } onClick={props.auth.signOut}>Sign out {props.auth.loggedUser.displayName ? props.auth.loggedUser.displayName : props.auth.loggedUser.email }</Link>
                 </Menu.Item>
             </Menu>
         )
     } else {
         return (
             <Menu mode="horizontal" theme="dark"
-            defaultSelectedKeys={['1']}
+            defaultSelectedKeys={[ props.location.pathname ]}
             style={{ lineHeight: '64px' }}>
-                <Menu.Item>
+                <Menu.Item key={ ROUTES.LANDING }>
                     <Link to={ ROUTES.LANDING }>Home</Link>
                 </Menu.Item>
-                <Menu.Item>
+                <Menu.Item key={ ROUTES.SIGN_IN }>
                     <Link to={ ROUTES.SIGN_IN }>Sign In</Link>
                 </Menu.Item>
-                <Menu.Item>
+                <Menu.Item key={ ROUTES.SIGN_UP }>
                     <Link to={ ROUTES.SIGN_UP }>Sign Up</Link>
                 </Menu.Item>
             </Menu>

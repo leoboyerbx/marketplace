@@ -1,6 +1,7 @@
 import React, { Components } from 'react'
 import { Form, Input, Button, Checkbox } from 'antd'
 import { withAuth } from '../Authentication';
+import { withRouter } from 'react-router-dom';
 
 const layout = {
     labelCol: {
@@ -19,7 +20,13 @@ const layout = {
 
 export function Signup (props) {
     const onFinish = values => {
-        props.auth.signUp(values.username, values.password)
+        props.auth.signUp(values.email, values.password).then((user) => {
+          if (user) {
+            props.auth.firebase.auth.currentUser.updateProfile({
+              displayName: values.name
+            }).then(() => { props.history.push('/') })
+          }
+        })
       };
     
       const onFinishFailed = errorInfo => {
@@ -39,8 +46,20 @@ export function Signup (props) {
           onFinishFailed={onFinishFailed}
         >
           <Form.Item
-            label="Username"
-            name="username"
+            label="Your Name"
+            name="name"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your username!',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Email"
+            name="email"
             rules={[
               {
                 required: true,
@@ -74,4 +93,4 @@ export function Signup (props) {
       );
 }
 
-export default withAuth(Signup)
+export default withAuth(withRouter(Signup))

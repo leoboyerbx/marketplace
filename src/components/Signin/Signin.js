@@ -1,6 +1,7 @@
 import React, { Components } from 'react'
 import { Form, Input, Button, Checkbox } from 'antd'
 import { withAuth } from '../Authentication';
+import { withRouter } from 'react-router-dom';
 
 const layout = {
     labelCol: {
@@ -18,8 +19,11 @@ const layout = {
   };
 
 function Signin(props) {
+  
     const onFinish = values => {
-      props.auth.signIn(values.username, values.password)
+      props.auth.signIn(values.username, values.password).then(user => {
+        if (user) props.history.push('/')
+      })
     };
   
     const onFinishFailed = errorInfo => {
@@ -78,4 +82,4 @@ function Signin(props) {
     );
   };
 
-export default withAuth(Signin)
+export default withAuth(withRouter(Signin))
