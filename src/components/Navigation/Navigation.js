@@ -5,34 +5,36 @@ import { Menu } from 'antd'
 import { withAuth } from '../Authentication'
 
 export function Navigation(props) {
-    return (
-        <Menu mode="horizontal" theme="dark"
-        defaultSelectedKeys={['1']}
-        style={{ lineHeight: '64px' }}>
-            <Menu.Item>
-                <Link to={ ROUTES.LANDING }>Home</Link>
-            </Menu.Item>
-            { props.auth.loggedUser ? ( 'null'
-             ) : ( 
-                 <>
-                    <Menu.Item>
-                        <Link to={ ROUTES.SIGN_IN }>Sign In</Link>
-                    </Menu.Item>
-
-                    <Menu.Item>
-                        <Link to={ ROUTES.SIGN_UP }>Sign Up</Link>
-                    </Menu.Item>
-                 </>
-             )}
-        </Menu>
-        // <div>
-        //     <ul>
-        //         <li></li>
-        //         <li><Link to={ ROUTES.SIGNIN }>Sign In</Link></li>
-        //         <li><Link to={ ROUTES.SIGNUP }>Sign Up</Link></li>
-        //     </ul>
-        // </div>
-    )
+    if (props.auth.loggedUser) {
+        return (
+            <Menu mode="horizontal" theme="dark"
+            defaultSelectedKeys={['1']}
+            style={{ lineHeight: '64px' }}>
+                <Menu.Item>
+                    <Link to={ ROUTES.LANDING }>Home</Link>
+                </Menu.Item>
+                <Menu.Item>
+                    <Link to={ ROUTES.SIGN_IN }>Sign out {props.auth.loggedUser.user.email}</Link>
+                </Menu.Item>
+            </Menu>
+        )
+    } else {
+        return (
+            <Menu mode="horizontal" theme="dark"
+            defaultSelectedKeys={['1']}
+            style={{ lineHeight: '64px' }}>
+                <Menu.Item>
+                    <Link to={ ROUTES.LANDING }>Home</Link>
+                </Menu.Item>
+                <Menu.Item>
+                    <Link to={ ROUTES.SIGN_IN }>Sign In</Link>
+                </Menu.Item>
+                <Menu.Item>
+                    <Link to={ ROUTES.SIGN_UP }>Sign Up</Link>
+                </Menu.Item>
+            </Menu>
+        )
+    }
 }
 
 export default withAuth(Navigation)

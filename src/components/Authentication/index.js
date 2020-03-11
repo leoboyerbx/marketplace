@@ -9,13 +9,13 @@ class AuthProvider extends React.Component {
     super(props)
     this.firebase = new Firebase()
 
-    this.firebase.auth.onAuthStateChanged(user => {
-        if (user) {
-            this.setState({loggedUser: user})
-        } else {
-            this.setState({loggedUser: undefined})
-        }
-      })
+    // this.firebase.auth.onAuthStateChanged(user => {
+    //     if (user) {
+    //         this.setState({loggedUser: user})
+    //     } else {
+    //         this.setState({loggedUser: undefined})
+    //     }
+    //   })
   }
 
   state = {
