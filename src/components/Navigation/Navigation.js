@@ -6,13 +6,14 @@ import { withAuth } from '../Authentication'
 
 export function Navigation(props) {
 
+    console.log(props.location.pathname)
 
     if (props.auth.loggedUser) {
         return (
             <Menu mode="horizontal" theme="dark"
-            defaultSelectedKeys={['1']}
+            defaultSelectedKeys={[ props.location.pathname ]}
             style={{ lineHeight: '64px' }}>
-                <Menu.Item>
+                <Menu.Item key={ ROUTES.LANDING }>
                     <Link to={ ROUTES.LANDING }>Home</Link>
                 </Menu.Item>
                 <Menu.Item>
