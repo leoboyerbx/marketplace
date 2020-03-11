@@ -1,10 +1,12 @@
 import * as ROUTES from '../../constants/Routes'
 import React, { Components } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { Menu } from 'antd'
 import { withAuth } from '../Authentication'
 
 export function Navigation(props) {
+
+
     if (props.auth.loggedUser) {
         return (
             <Menu mode="horizontal" theme="dark"
@@ -14,7 +16,7 @@ export function Navigation(props) {
                     <Link to={ ROUTES.LANDING }>Home</Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <Link to={ ROUTES.SIGN_IN }>Sign out {props.auth.loggedUser.user.email}</Link>
+                    <Link to={ ROUTES.SIGN_IN } onClick={props.auth.signOut}>Sign out {props.auth.loggedUser.email}</Link>
                 </Menu.Item>
             </Menu>
         )
@@ -37,4 +39,4 @@ export function Navigation(props) {
     }
 }
 
-export default withAuth(Navigation)
+export default withAuth(withRouter(Navigation))

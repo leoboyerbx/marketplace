@@ -14,11 +14,12 @@ const config = {
 class Firebase {
   loggedUser = undefined
 
-  constructor() {
+  constructor(authStateChanged = () => null) {
     if (!firebase.apps.length) {
       app.initializeApp(config);
     }
     this.auth = firebase.default.auth();
+    this.auth.onAuthStateChanged(authStateChanged)
   }
 
 

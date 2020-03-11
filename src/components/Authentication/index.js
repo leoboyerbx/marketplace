@@ -7,32 +7,20 @@ class AuthProvider extends React.Component {
 
   constructor (props) {
     super(props)
-    this.firebase = new Firebase()
+    this.firebase = new Firebase(user => {
+      this.setState({ loggedUser: user })
+    })
 
-    // this.firebase.auth.onAuthStateChanged(user => {
-    //     if (user) {
-    //         this.setState({loggedUser: user})
-    //     } else {
-    //         this.setState({loggedUser: undefined})
-    //     }
-    //   })
-  }
-
-  state = {
-    firebase: this.firebase,
-    loggedUser: undefined,
-    signIn: (email, password) => {
-      this.firebase.doSignInWithEmailAndPassword(email, password).then(user => {
-        console.log(user)
-        this.setState({ loggedUser: user })
-      })
-    },
-    signUp: (email, password) => {
-      this.firebase.doCreateUserWithEmailAndPassword(email, password).then(user => {
-        console.log(user)
-      })
+    this.state = {
+      firebase: this.firebase,
+      loggedUser: undefined,
+      signIn: this.firebase.doSignInWithEmailAndPassword,
+      signOut: this.firebase.doSignOut,
+      signUp: this.firebase.doCreateUserWithEmailAndPassword
     }
+
   }
+  
   render () {
     console.log('hey')
     return (
