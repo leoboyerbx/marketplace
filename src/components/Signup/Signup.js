@@ -1,7 +1,6 @@
 import React, { Components } from 'react'
 import { Form, Input, Button, Checkbox } from 'antd'
-import { withAuth } from '../../Authorization';
-import { withFirebase } from '../Firebase';
+import { withAuth } from '../Authentication';
 
 const layout = {
     labelCol: {
@@ -20,7 +19,7 @@ const layout = {
 
 export function Signup (props) {
     const onFinish = values => {
-        props.firebase.doCreateUserWithEmailAndPassword(values.username, values.password).then(console.log)
+        props.auth.signUp(values.username, values.password)
       };
     
       const onFinishFailed = errorInfo => {
@@ -75,4 +74,4 @@ export function Signup (props) {
       );
 }
 
-export default withFirebase(Signup)
+export default withAuth(Signup)

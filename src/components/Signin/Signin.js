@@ -1,7 +1,6 @@
 import React, { Components } from 'react'
 import { Form, Input, Button, Checkbox } from 'antd'
-import { withAuth } from '../../Authorization';
-import { withFirebase } from '../Firebase';
+import { withAuth } from '../Authentication';
 
 const layout = {
     labelCol: {
@@ -20,8 +19,7 @@ const layout = {
 
 function Signin(props) {
     const onFinish = values => {
-      console.log(values)
-      console.log(props.firebase)
+      props.auth.signIn(values.username, values.password)
     };
   
     const onFinishFailed = errorInfo => {
@@ -80,4 +78,4 @@ function Signin(props) {
     );
   };
 
-export default withFirebase(Signin)
+export default withAuth(Signin)

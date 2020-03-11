@@ -12,7 +12,7 @@ import Navigation from './components/Navigation/Navigation';
 
 import { Layout } from 'antd';
 import styled from 'styled-components';
-import Firebase, { FirebaseContext } from './components/Firebase';
+import { withAuthProvider } from './components/Authentication';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -21,12 +21,10 @@ const SiteLayoutContent = styled.div`
   padding: 24px;
   min-height: 280px;
 `
-const firebase = new Firebase()
 
 function App() {
  
   return (
-    <FirebaseContext.Provider value={ firebase }>
       <Router>
         <Layout>
           <Header>
@@ -54,8 +52,7 @@ function App() {
           </Footer>
         </Layout>
       </Router>
-    </FirebaseContext.Provider>
   );
 }
 
-export default App;
+export default withAuthProvider(App);

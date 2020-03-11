@@ -2,7 +2,6 @@ import React from 'react';
 import firebase from 'firebase';
 import app from 'firebase/app';
 
-
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -13,8 +12,12 @@ const config = {
 };
 
 class Firebase {
+  loggedUser = undefined
+
   constructor() {
-    app.initializeApp(config);
+    if (!firebase.apps.length) {
+      app.initializeApp(config);
+    }
     this.auth = firebase.default.auth();
   }
 
@@ -22,8 +25,10 @@ class Firebase {
   doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
 
-  doSignInWithEmailAndPassword = (email, password) =>
-    this.auth.signInWithEmailAndPassword(email, password);
+  doSignInWithEmailAndPassword = (email, password) => {
+    return this.auth.signInWithEmailAndPassword(email, password);
+
+  }
 
   doSignOut = () => this.auth.signOut();
 
@@ -33,9 +38,3 @@ class Firebase {
 }
 
 export default Firebase;
-export const FirebaseContext = React.createContext(null);
-export const withFirebase = Component => props => (
-  <FirebaseContext.Consumer>
-    {firebase => <Component {...props} firebase={firebase} />}
-  </FirebaseContext.Consumer>
-);
