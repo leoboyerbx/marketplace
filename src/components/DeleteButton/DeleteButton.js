@@ -5,7 +5,7 @@ import { DeleteOutlined } from '@ant-design/icons'
 const DeleteButton = props => {
     return (
         <Popconfirm
-            title="Supprimer cet Article ?"
+            title={props.plural ? "Supprimer ces articles ?" : "Supprimer cet article ?"}
             onConfirm={props.onConfirm}
             onCancel={props.onCancel}
             okText="Oui"

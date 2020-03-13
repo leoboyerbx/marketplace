@@ -29,7 +29,7 @@ function Cart(props) {
         {
             // title: "Prix Unitaire",
             dataIndex: 'action',
-            render: (show, item) => show === false ? '' : (<DeleteButton onConfirm={() => { props.cart.remove(item.id) }} />)
+            render: (show, item) => show === false ? '' : (<DeleteButton plural={item.qty > 1} onConfirm={() => { props.cart.remove(item.id) }} />)
         },
     ]
     const cartData = props.cart.length() ? [

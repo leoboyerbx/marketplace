@@ -1,7 +1,8 @@
 import React from 'react'
 import { Card, List, Popconfirm } from 'antd'
 import Meta from 'antd/lib/card/Meta'
-import { withCart } from '../../hocs/Cart'
+import { withCart } from 'hocs/Cart'
+import { ShoppingCartOutlined } from '@ant-design/icons'
 
 export function ProductItem (props) {
 
@@ -19,6 +20,7 @@ export function ProductItem (props) {
         okText="Ajouter au panier"
         cancelText="Cancel"
         placement="bottom"
+        icon={<ShoppingCartOutlined />}
         >
                 <Card
             hoverable
