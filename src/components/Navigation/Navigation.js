@@ -19,8 +19,8 @@ export function Navigation(props) {
                 <Menu.Item>
                     <Link to={ ROUTES.SIGN_IN } onClick={props.auth.signOut}>Sign out {props.auth.loggedUser.displayName ? props.auth.loggedUser.displayName : props.auth.loggedUser.email }</Link>
                 </Menu.Item>
-                <Menu.Item>
-                    <Badge count={props.cart.cart.length}>
+                <Menu.Item onClick={ () => { console.log(props.cart.get()) }}>
+                    <Badge count={ props.cart.length() }>
                         Panier
                         <ShoppingCartOutlined style={{ marginLeft: 5, marginRight: 8 }} />
                     </Badge>
