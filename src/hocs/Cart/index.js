@@ -28,6 +28,11 @@ const CartProvider = (props) => {
       let i = 0
       cart.map(item => { i += item.qty })
       return i
+    },
+    totalPrice: () => {
+      let price = 0
+      cart.map(item => { price += item.price })
+      return price
     }
   }
 

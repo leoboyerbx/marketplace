@@ -3,8 +3,8 @@ import React, { Components } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { Menu, Badge } from 'antd'
 import { ShoppingCartOutlined } from '@ant-design/icons'
-import { withAuth } from '../Authentication'
-import { withCart } from '../Cart'
+import { withAuth } from '../../hocs/Authentication'
+import { withCart } from '../../hocs/Cart'
 
 export function Navigation(props) {
 
@@ -19,11 +19,13 @@ export function Navigation(props) {
                 <Menu.Item>
                     <Link to={ ROUTES.SIGN_IN } onClick={props.auth.signOut}>Sign out {props.auth.loggedUser.displayName ? props.auth.loggedUser.displayName : props.auth.loggedUser.email }</Link>
                 </Menu.Item>
-                <Menu.Item onClick={ () => { console.log(props.cart.get()) }}>
-                    <Badge count={ props.cart.length() }>
-                        Panier
-                        <ShoppingCartOutlined style={{ marginLeft: 5, marginRight: 8 }} />
-                    </Badge>
+                <Menu.Item style={{float: 'right'}} onClick={ () => { console.log(props.cart.get()) }}>
+                    <Link to={ ROUTES.CART }>
+                        <Badge count={ props.cart.length() }>
+                            Panier
+                            <ShoppingCartOutlined style={{ marginLeft: 5, marginRight: 8 }} />
+                        </Badge>
+                    </Link>
                 </Menu.Item>
             </Menu>
         )

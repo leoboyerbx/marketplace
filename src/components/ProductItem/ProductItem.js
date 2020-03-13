@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, List, Popconfirm } from 'antd'
 import Meta from 'antd/lib/card/Meta'
-import { withCart } from '../Cart'
+import { withCart } from '../../hocs/Cart'
 
 export function ProductItem (props) {
 
@@ -22,7 +22,7 @@ export function ProductItem (props) {
         >
                 <Card
             hoverable
-            
+
             cover={<img alt="example" src={item.imgUrl} />}
             >
                 <Meta title={ item.name } description={ item.price + ' €' } />

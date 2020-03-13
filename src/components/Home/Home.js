@@ -1,13 +1,9 @@
 import React, { Components } from 'react'
-import { withAuth } from '../Authentication'
-import * as ROUTES from '../../constants/Routes'
-import { Link } from 'react-router-dom'
+import { withAuth } from '../../hocs/Authentication'
 import ProductList from '../ProductsList/ProductList'
 import products from '../../fakeData/products'
 
 export function Home(props) {
-      
-    
     return (
         <>
             {props.auth.loggedUser ? (

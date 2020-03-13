@@ -1,6 +1,6 @@
 import React, { Components } from 'react'
 import { Form, Input, Button, Checkbox } from 'antd'
-import { withAuth } from '../Authentication';
+import { withAuth } from '../../hocs/Authentication';
 import { withRouter } from 'react-router-dom';
 
 const layout = {
@@ -19,17 +19,17 @@ const layout = {
   };
 
 function Signin(props) {
-  
+
     const onFinish = values => {
       props.auth.signIn(values.username, values.password).then(user => {
         if (user) props.history.push('/')
       })
     };
-  
+
     const onFinishFailed = errorInfo => {
       console.log('Failed:', errorInfo);
     };
-  
+
     return (
     <div>
       <h1 style={{ textAlign: 'center' }}>Sign In</h1>
@@ -54,7 +54,7 @@ function Signin(props) {
         >
           <Input />
         </Form.Item>
-  
+
         <Form.Item
           label="Password"
           name="password"
@@ -67,11 +67,11 @@ function Signin(props) {
         >
           <Input.Password />
         </Form.Item>
-  
+
         <Form.Item {...tailLayout} name="remember" valuePropName="checked">
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
-  
+
         <Form.Item {...tailLayout}>
           <Button type="primary" htmlType="submit">
             Submit

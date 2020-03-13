@@ -12,8 +12,9 @@ import Navigation from './components/Navigation/Navigation';
 
 import { Layout } from 'antd';
 import styled from 'styled-components';
-import { withAuthProvider } from './components/Authentication';
-import { withCartProvider } from './components/Cart';
+import { withAuthProvider } from './hocs/Authentication';
+import { withCartProvider } from './hocs/Cart';
+import Cart from "./components/Cart/Cart";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -24,7 +25,7 @@ const SiteLayoutContent = styled.div`
 `
 
 function App() {
- 
+
   return (
       <Router>
         <Layout>
@@ -36,16 +37,19 @@ function App() {
               <Route exact path={ ROUTES.LANDING }>
                 <Home />
               </Route>
-              
+
               <Route path={ ROUTES.SIGN_IN }>
                   <Signin />
               </Route>
               <Route path={ ROUTES.SIGN_UP }>
                 <Signup />
               </Route>
+              <Route path={ ROUTES.CART }>
+                <Cart />
+              </Route>
 
             </SiteLayoutContent>
-            
+
 
           </Content>
           <Footer>
