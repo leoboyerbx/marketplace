@@ -1,13 +1,14 @@
 import React from 'react'
 import { Card, List, Popconfirm } from 'antd'
 import Meta from 'antd/lib/card/Meta'
+import { withCart } from '../Cart'
 
-export default function ProductItem (props) {
+export function ProductItem (props) {
 
     const item = props.item
 
     function addToCart () {
-
+        props.cart.add(item)
     }
 
     return (
@@ -30,3 +31,5 @@ export default function ProductItem (props) {
         </List.Item>
     )
 }
+
+export default withCart(ProductItem)

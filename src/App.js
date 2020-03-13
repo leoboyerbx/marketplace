@@ -13,6 +13,7 @@ import Navigation from './components/Navigation/Navigation';
 import { Layout } from 'antd';
 import styled from 'styled-components';
 import { withAuthProvider } from './components/Authentication';
+import { withCartProvider } from './components/Cart';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -55,4 +56,4 @@ function App() {
   );
 }
 
-export default withAuthProvider(App);
+export default withAuthProvider(withCartProvider(App));

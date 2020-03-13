@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom'
 import { Menu, Badge } from 'antd'
 import { ShoppingCartOutlined } from '@ant-design/icons'
 import { withAuth } from '../Authentication'
+import { withCart } from '../Cart'
 
 export function Navigation(props) {
 
@@ -19,7 +20,7 @@ export function Navigation(props) {
                     <Link to={ ROUTES.SIGN_IN } onClick={props.auth.signOut}>Sign out {props.auth.loggedUser.displayName ? props.auth.loggedUser.displayName : props.auth.loggedUser.email }</Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <Badge count={5}>
+                    <Badge count={props.cart.cart.length}>
                         Panier
                         <ShoppingCartOutlined style={{ marginLeft: 5, marginRight: 8 }} />
                     </Badge>
@@ -45,4 +46,4 @@ export function Navigation(props) {
     }
 }
 
-export default withAuth(withRouter(Navigation))
+export default withAuth(withRouter(withCart(Navigation)))

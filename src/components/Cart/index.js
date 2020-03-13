@@ -3,15 +3,17 @@ import React from 'react';
 export const CartContext = React.createContext(null);
 
 const CartProvider = (props) => {
+  const [cart, setCart] = React.useState([])
+
   const providedData = {
-    cart: [],
-    add: item => { providedData.cart.push(item) },
+    cart: cart,
+    add: item => { setCart([...cart, item]) },
     length: () => providedData.cart.length
   }
 
   return (
     <CartContext.Provider value={ providedData }>
-      {this.props.children}
+      {props.children}
     </CartContext.Provider>
   )
 }
