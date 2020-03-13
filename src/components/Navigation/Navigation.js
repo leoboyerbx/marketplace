@@ -1,7 +1,8 @@
 import * as ROUTES from '../../constants/Routes'
 import React, { Components } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { Menu } from 'antd'
+import { Menu, Badge } from 'antd'
+import { ShoppingCartOutlined } from '@ant-design/icons'
 import { withAuth } from '../Authentication'
 
 export function Navigation(props) {
@@ -16,6 +17,11 @@ export function Navigation(props) {
                 </Menu.Item>
                 <Menu.Item>
                     <Link to={ ROUTES.SIGN_IN } onClick={props.auth.signOut}>Sign out {props.auth.loggedUser.displayName ? props.auth.loggedUser.displayName : props.auth.loggedUser.email }</Link>
+                </Menu.Item>
+                <Menu.Item>
+                    <Badge count={5}>
+                        <ShoppingCartOutlined />
+                    </Badge>
                 </Menu.Item>
             </Menu>
         )
