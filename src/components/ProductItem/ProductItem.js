@@ -11,7 +11,7 @@ export default function ProductItem (props) {
     }
 
     return (
-        <List.Item>
+        <List.Item style={{backgroundColor: '#ff0'}}>
             <Popconfirm
         title={item.name }
         onConfirm={ addToCart}
@@ -21,7 +21,7 @@ export default function ProductItem (props) {
         >
                 <Card
             hoverable
-            style={{ width: 240 }}
+            
             cover={<img alt="example" src={item.imgUrl} />}
             >
                 <Meta title={ item.name } description={ item.price + ' €' } />

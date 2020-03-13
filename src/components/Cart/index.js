@@ -3,22 +3,27 @@ import React from 'react';
 export const CartContext = React.createContext(null);
 
 const CartProvider = (props) => {
+  const providedData = {
+    cart: [],
+    add: item => { providedData.cart.push(item) },
+    length: () => providedData.cart.length
+  }
 
   return (
-    <AuthContext.Provider value={ this.state }>
+    <CartContext.Provider value={ providedData }>
       {this.props.children}
-    </AuthContext.Provider>
+    </CartContext.Provider>
   )
 }
 
-export const withAuthProvider = Component => props => (
-  <AuthProvider>
+export const withCartProvider = Component => props => (
+  <CartProvider>
     <Component {...props}></Component>
-  </AuthProvider>
+  </CartProvider>
 )
 
-export const withAuth = Component => props => (
-<AuthContext.Consumer>
-    {firebase => <Component {...props} auth={firebase} />}
-  </AuthContext.Consumer>
+export const withCart = Component => props => (
+<CartContext.Consumer>
+    {cart => <Component {...props} cart={cart} />}
+  </CartContext.Consumer>
 );
