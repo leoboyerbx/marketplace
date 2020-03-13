@@ -1,7 +1,6 @@
 import React from 'react'
-import { List, Card, Popconfirm } from 'antd'
+import { List } from 'antd'
 import ProductItem from '../ProductItem/ProductItem'
-import Meta from 'antd/lib/card/Meta'
 
 export default function ProductList (props) {
 
