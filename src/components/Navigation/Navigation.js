@@ -20,7 +20,8 @@ export function Navigation(props) {
                 </Menu.Item>
                 <Menu.Item>
                     <Badge count={5}>
-                        <ShoppingCartOutlined />
+                        Panier
+                        <ShoppingCartOutlined style={{ marginLeft: 5, marginRight: 8 }} />
                     </Badge>
                 </Menu.Item>
             </Menu>
