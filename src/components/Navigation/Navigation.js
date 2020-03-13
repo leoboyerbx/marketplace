@@ -1,7 +1,8 @@
 import * as ROUTES from '../../constants/Routes'
 import React, { Components } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { Menu } from 'antd'
+import { Menu, Badge } from 'antd'
+import { ShoppingCartOutlined } from '@ant-design/icons'
 import { withAuth } from '../Authentication'
 
 export function Navigation(props) {
@@ -10,12 +11,17 @@ export function Navigation(props) {
         return (
             <Menu mode="horizontal" theme="dark"
             defaultSelectedKeys={[ props.location.pathname ]}
-            style={{ lineHeight: '64px' }}>
+            style={{ lineHeight: '64px' }}>tyle
                 <Menu.Item key={ ROUTES.LANDING }>
                     <Link to={ ROUTES.LANDING }>Home</Link>
                 </Menu.Item>
                 <Menu.Item>
                     <Link to={ ROUTES.SIGN_IN } onClick={props.auth.signOut}>Sign out {props.auth.loggedUser.displayName ? props.auth.loggedUser.displayName : props.auth.loggedUser.email }</Link>
+                </Menu.Item>
+                <Menu.Item>
+                    <Badge count={5}>
+                        <ShoppingCartOutlined />
+                    </Badge>
                 </Menu.Item>
             </Menu>
         )
