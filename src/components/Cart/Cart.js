@@ -2,6 +2,7 @@ import React from 'react'
 import {withCart} from "../../hocs/Cart";
 import {Button, Empty, InputNumber, Table} from 'antd'
 import Text from "antd/es/typography/Text";
+import emptyCart  from 'img/empty-cart.svg'
 
 function Cart(props) {
     const cols = [
@@ -37,7 +38,7 @@ function Cart(props) {
     return (
         <div>
             <h1>Mon Panier</h1>
-            <Table columns={cols} dataSource={ cartData } locale={{	emptyText: (<Empty image="../../img/empty-cart.svg" description="Votre panier est vide." />) }} />
+            <Table columns={cols} dataSource={ cartData } locale={{	emptyText: (<Empty image={emptyCart} description="Votre panier est vide." />) }} />
         </div>
     )
 }
