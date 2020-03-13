@@ -1,36 +1,43 @@
 import React from 'react'
 import {withCart} from "../../hocs/Cart";
-import {Button, Empty, InputNumber, Table} from 'antd'
+import {Button, Empty, Table} from 'antd'
 import Text from "antd/es/typography/Text";
 import emptyCart  from 'img/empty-cart.svg'
+import QuantityCounter from "../QuantityCounter/QuantityCounter";
+import DeleteButton from "../DeleteButton/DeleteButton";
 
 function Cart(props) {
+
     const cols = [
         {
             title: "Nom de l'article",
             dataIndex: 'name',
-            key: 'name'
         },
         {
             title: "Prix Unitaire",
             dataIndex: 'price',
-            key: 'price',
             render: price => <Text>{price} €</Text>
         },
         {
             title: "Quantité",
             dataIndex: 'qty',
             key: 'qty',
-            render: qty => qty ? (
-                    <>
-                    <Button size="small">-</Button><Text style={{ margin: '0 10px' }}>{ qty }</Text><Button size="small">+</Button>
-                    </>
+            render: (qty, item) => qty ? (
+                    <QuantityCounter min={1} value={ item.qty } onPlus={() => {props.cart.increaseQty(item.id)}} onMinus={() => {props.cart.decreaseQty(item.id)}} />
             ) : ''
+        },
+        {
+            // title: "Prix Unitaire",
+            dataIndex: 'action',
+            render: (show, item) => show === false ? '' : (<DeleteButton onConfirm={() => { props.cart.remove(item.id) }} />)
         },
     ]
     const cartData = props.cart.length() ? [
         ...props.cart.get(),
         {
+            key: 'total',
+            id: 0,
+            action: false,
             name: <Text style={{ fontWeight: 'bold' }}>Total</Text>,
             price: <Text style={{ fontWeight: 'bold' }}>{props.cart.totalPrice()}</Text>
         }
