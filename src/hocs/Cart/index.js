@@ -4,13 +4,25 @@ import {withAuth} from "../Authentication";
 export const CartContext = React.createContext(null);
 
 const CartProvider = withAuth((props) => {
-  const [cart, setCart] = React.useState([])
+  const [cart, setCartState] = React.useState([])
 
-  const updateCart = (cart) => {
+  const setCart = cart => {
+    setCartState(cart)
+    saveCartToDatabase(cart)
+  }
+
+  const saveCartToDatabase = (cart) => {
     if (props.auth.loggedUser) {
-      console.log(props)
-      props.auth.database.ref('userCarts/' + props.auth.loggedUser.uid).set({ cart })
+      return props.auth.database.ref('users/' + props.auth.loggedUser.uid).set({ cart })
     }
+  }
+
+  const applyCartFromDatabase = () => {
+    if (props.auth.loggedUser) {
+      props.auth.database.ref('/users/' + props.auth.loggedUser.uid + '/cart').once('value').then(function(snapshot) {
+        setCart(snapshot.val())
+      });
+    } else {return []}
   }
 
   const providedData = {
@@ -22,7 +34,7 @@ const CartProvider = withAuth((props) => {
         providedData.increaseQty(existingItem.id)
       } else {
         const itemToInsert = { ...item, qty: 1, key: item.id }
-        updateCart([...cart, itemToInsert])
+        setCart([...cart, itemToInsert])
       }
     },
     remove: id => {
@@ -62,7 +74,8 @@ const CartProvider = withAuth((props) => {
       let price = 0
       cart.map(item => { price += item.price * item.qty })
       return price
-    }
+    },
+    retrieve: applyCartFromDatabase
   }
 
   return (
