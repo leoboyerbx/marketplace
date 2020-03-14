@@ -13,6 +13,7 @@ class AuthProvider extends React.Component {
 
     this.state = {
       firebase: this.firebase,
+      database: this.firebase.database,
       loggedUser: undefined,
       signIn: this.firebase.doSignInWithEmailAndPassword,
       signOut: this.firebase.doSignOut,
@@ -20,7 +21,7 @@ class AuthProvider extends React.Component {
     }
 
   }
-  
+
   render () {
     console.log('hey')
     return (

@@ -1,9 +1,17 @@
 import React from 'react';
+import {withAuth} from "../Authentication";
 
 export const CartContext = React.createContext(null);
 
-const CartProvider = (props) => {
+const CartProvider = withAuth((props) => {
   const [cart, setCart] = React.useState([])
+
+  const updateCart = (cart) => {
+    if (props.auth.loggedUser) {
+      console.log(props)
+      props.auth.database.ref('userCarts/' + props.auth.loggedUser.uid).set({ cart })
+    }
+  }
 
   const providedData = {
     get: () => cart,
@@ -14,7 +22,7 @@ const CartProvider = (props) => {
         providedData.increaseQty(existingItem.id)
       } else {
         const itemToInsert = { ...item, qty: 1, key: item.id }
-        setCart([...cart, itemToInsert])
+        updateCart([...cart, itemToInsert])
       }
     },
     remove: id => {
@@ -62,7 +70,7 @@ const CartProvider = (props) => {
       {props.children}
     </CartContext.Provider>
   )
-}
+})
 
 export const withCartProvider = Component => props => (
   <CartProvider>
