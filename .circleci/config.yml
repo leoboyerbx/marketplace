@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run:
           name: test markeplace application
-          command: yarn global add jest && yarn test
+          command: yarn global add jest && yarn && yarn test
       - store_artifacts:
           path: test-results.xml
           prefix: tests
