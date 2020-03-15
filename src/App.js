@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React from 'react';
 import * as ROUTES from './constants/Routes'
 import {
   BrowserRouter as Router,
@@ -9,7 +9,6 @@ import Home from './components/Home/Home';
 import Signin from './components/Signin/Signin'
 import Signup from './components/Signup/Signup'
 import Navigation from './components/Navigation/Navigation';
-
 import { Layout } from 'antd';
 import styled from 'styled-components';
 import { withAuthProvider } from './hocs/Authentication';
@@ -18,7 +17,6 @@ import Cart from "./components/Cart/Cart";
 import {withRouter} from "./hocs/Router";
 
 const { Header, Footer, Content } = Layout;
-
 const SiteLayoutContent = styled.div`
   background: #fff;
   padding: 24px;
