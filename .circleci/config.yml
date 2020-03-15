@@ -1,0 +1,15 @@
+ 
+version: 2.1
+jobs:
+  build_and_test:
+    working_directory: ~/marketplace
+    docker:
+      - image: circleci/node:13.7.0
+    steps:
+      - checkout
+      - run:
+          name: test markeplace application
+          command: yarn global add jest && yarn test
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
