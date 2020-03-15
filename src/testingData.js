@@ -64,3 +64,7 @@ export const cartData = {
         setCart([])
     }
 }
+
+export const authNotLogged = {
+    loggedUser: undefined
+}

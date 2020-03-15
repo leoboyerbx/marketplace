@@ -10,8 +10,9 @@ const DeleteButton = props => {
             onCancel={props.onCancel}
             okText="Oui"
             cancelText="Annuler"
+            data-testid={"popconfirm"}
         >
-            <Button size="large" danger><DeleteOutlined /> Supprimer</Button>
+            <Button data-testid='deletebutton' size="large" danger><DeleteOutlined /> Supprimer</Button>
         </Popconfirm>
     )
 }
