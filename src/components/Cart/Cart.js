@@ -1,8 +1,7 @@
 import React from 'react'
 import {withCart} from "../../hocs/Cart";
-import {Button, Empty, Popconfirm, Table} from 'antd'
-import Text from "antd/es/typography/Text";
-import emptyCart  from 'img/empty-cart.svg'
+import {Button, Empty, Popconfirm, Table, Typography} from 'antd'
+import emptyCart from 'img/empty-cart.svg'
 import QuantityCounter from "../QuantityCounter/QuantityCounter";
 import DeleteButton from "../DeleteButton/DeleteButton";
 
@@ -16,7 +15,7 @@ function Cart(props) {
         {
             title: "Prix Unitaire",
             dataIndex: 'price',
-            render: price => <Text>{price} €</Text>
+            render: price => <Typography>{price} €</Typography>
         },
         {
             title: "Quantité",
@@ -49,8 +48,8 @@ function Cart(props) {
             key: 'total',
             id: 0,
             action: false,
-            name: <Text style={{ fontWeight: 'bold' }}>Total</Text>,
-            price: <Text style={{ fontWeight: 'bold' }}>{props.cart.totalPrice()}</Text>
+            name: <Typography style={{ fontWeight: 'bold' }}>Total</Typography>,
+            price: <Typography style={{ fontWeight: 'bold' }}>{props.cart.totalPrice()}</Typography>
         }
     ] :  props.cart.get()
     return (

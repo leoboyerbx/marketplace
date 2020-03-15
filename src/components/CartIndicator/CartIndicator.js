@@ -3,7 +3,7 @@ import React, {useEffect} from "react";
 import { ShoppingCartOutlined } from '@ant-design/icons'
 import { withCart } from '../../hocs/Cart'
 
-class CartIndicator extends React.Component {
+export class CartIndicator extends React.Component {
     componentDidMount() {
         this.props.cart.retrieve()
     }

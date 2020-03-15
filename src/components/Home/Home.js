@@ -3,7 +3,7 @@ import { withAuth } from '../../hocs/Authentication'
 import ProductList from '../ProductsList/ProductList'
 import products from '../../fakeData/products'
 
-export function Home(props) {
+function Home(props) {
     return (
         <>
             {props.auth.loggedUser ? (

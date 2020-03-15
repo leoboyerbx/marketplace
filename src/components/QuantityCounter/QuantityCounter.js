@@ -1,5 +1,4 @@
-import {Button} from "antd";
-import Text from "antd/es/typography/Text";
+import {Button, Typography} from "antd";
 import React from "react";
 
 const QuantityCounter = props => {
@@ -18,7 +17,7 @@ const QuantityCounter = props => {
 
     return (
         <>
-            <Button size="small" onClick={onMinus} disabled={bottomLocked}>-</Button><Text style={{ margin: '0 10px' }}>{ value}</Text><Button size="small" onClick={onPlus} disabled={topLocked}>+</Button>
+            <Button size="small" onClick={onMinus} disabled={bottomLocked}>-</Button><Typography.Text style={{ margin: '0 10px' }}>{ value}</Typography.Text><Button size="small" onClick={onPlus} disabled={topLocked}>+</Button>
         </>
     )
 }

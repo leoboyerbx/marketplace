@@ -16,7 +16,7 @@ import { withAuthProvider } from './hocs/Authentication';
 import { withCartProvider } from './hocs/Cart';
 import Cart from "./components/Cart/Cart";
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Footer, Content } = Layout;
 
 const SiteLayoutContent = styled.div`
   background: #fff;
