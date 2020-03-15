@@ -1,7 +1,7 @@
- 
+
 version: 2.1
 jobs:
-  build_and_test:
+  build:
     working_directory: ~/marketplace
     docker:
       - image: circleci/node:13.7.0
