@@ -1,10 +1,9 @@
 import * as ROUTES from '../../constants/Routes'
 import React, { Components } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { Menu, Badge } from 'antd'
-import { ShoppingCartOutlined } from '@ant-design/icons'
+import { Menu, } from 'antd'
 import { withAuth } from '../../hocs/Authentication'
-import { withCart } from '../../hocs/Cart'
+import CartIndicator from "../CartIndicator/CartIndicator";
 
 export function Navigation(props) {
 
@@ -21,10 +20,7 @@ export function Navigation(props) {
                 </Menu.Item>
                 <Menu.Item style={{float: 'right'}} onClick={ () => { console.log(props.auth.loggedUser) }}>
                     <Link to={ ROUTES.CART }>
-                        <Badge count={ props.cart.length() }>
-                            Panier
-                            <ShoppingCartOutlined style={{ marginLeft: 5, marginRight: 8 }} />
-                        </Badge>
+                        <CartIndicator />
                     </Link>
                 </Menu.Item>
             </Menu>
@@ -48,4 +44,4 @@ export function Navigation(props) {
     }
 }
 
-export default withAuth(withRouter(withCart(Navigation)))
+export default withAuth(withRouter(Navigation))

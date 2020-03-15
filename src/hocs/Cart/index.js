@@ -20,7 +20,9 @@ const CartProvider = withAuth((props) => {
   const applyCartFromDatabase = () => {
     if (props.auth.loggedUser) {
       props.auth.database.ref('/users/' + props.auth.loggedUser.uid + '/cart').once('value').then(function(snapshot) {
-        setCart(snapshot.val())
+        if (snapshot.val()) {
+          setCart(snapshot.val())
+        }
       });
     } else {return []}
   }
@@ -66,9 +68,13 @@ const CartProvider = withAuth((props) => {
       }
     },
     length: () => {
-      let i = 0
-      cart.map(item => { i += item.qty })
-      return i
+      if(cart) {
+        let i = 0
+        cart.map(item => { i += item.qty })
+        return i
+      } else {
+        return 0
+      }
     },
     totalPrice: () => {
       let price = 0
