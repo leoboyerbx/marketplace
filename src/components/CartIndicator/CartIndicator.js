@@ -10,7 +10,7 @@ export class CartIndicator extends React.Component {
 
     render () {
         return (
-            <Badge count={ this.props.cart.length() }>
+            <Badge data-testid="badge" count={ this.props.cart.length() }>
                 Panier
                 <ShoppingCartOutlined style={{ marginLeft: 5, marginRight: 8 }} />
             </Badge>

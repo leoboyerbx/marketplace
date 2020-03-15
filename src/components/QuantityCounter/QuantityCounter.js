@@ -17,7 +17,7 @@ const QuantityCounter = props => {
 
     return (
         <>
-            <Button size="small" onClick={onMinus} disabled={bottomLocked}>-</Button><Typography.Text style={{ margin: '0 10px' }}>{ value}</Typography.Text><Button size="small" onClick={onPlus} disabled={topLocked}>+</Button>
+            <Button data-testid="button-minus" size="small" onClick={onMinus} disabled={bottomLocked}>-</Button><Typography.Text data-testid="quantity-value" style={{ margin: '0 10px' }}>{ value}</Typography.Text><Button data-testid="button-plus" size="small" onClick={onPlus} disabled={topLocked}>+</Button>
         </>
     )
 }
