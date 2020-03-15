@@ -1,3 +1,5 @@
+[![leoboyerbx](https://circleci.com/gh/leoboyerbx/marketplace.svg?style=svg)](https://app.circleci.com/pipelines/github/leoboyerbx/marketplace)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
