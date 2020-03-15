@@ -81,7 +81,10 @@ const CartProvider = withAuth((props) => {
       cart.map(item => { price += item.price * item.qty })
       return price
     },
-    retrieve: applyCartFromDatabase
+    retrieve: applyCartFromDatabase,
+    empty: () => {
+      setCart([])
+    }
   }
 
   return (

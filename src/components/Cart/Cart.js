@@ -1,6 +1,6 @@
 import React from 'react'
 import {withCart} from "../../hocs/Cart";
-import {Button, Empty, Table} from 'antd'
+import {Button, Empty, Popconfirm, Table} from 'antd'
 import Text from "antd/es/typography/Text";
 import emptyCart  from 'img/empty-cart.svg'
 import QuantityCounter from "../QuantityCounter/QuantityCounter";
@@ -29,7 +29,18 @@ function Cart(props) {
         {
             // title: "Prix Unitaire",
             dataIndex: 'action',
-            render: (show, item) => show === false ? '' : (<DeleteButton plural={item.qty > 1} onConfirm={() => { props.cart.remove(item.id) }} />)
+            render: (show, item) => show === false ? (
+                <Popconfirm
+                title={"Vider le panier ?"}
+                onConfirm={props.cart.empty}
+                okText="Oui"
+                cancelText="Annuler"
+            >
+                    <Button type="primary" danger size="large">
+                        Vider le panier
+                    </Button>
+                </Popconfirm>
+            ) : (<DeleteButton plural={item.qty > 1} onConfirm={() => { props.cart.remove(item.id) }} />)
         },
     ]
     const cartData = props.cart.length() ? [
@@ -45,6 +56,7 @@ function Cart(props) {
     return (
         <div>
             <h1>Mon Panier</h1>
+
             <Table columns={cols} dataSource={ cartData } locale={{	emptyText: (<Empty image={emptyCart} description="Votre panier est vide." />) }} />
         </div>
     )
