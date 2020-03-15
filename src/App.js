@@ -15,6 +15,7 @@ import styled from 'styled-components';
 import { withAuthProvider } from './hocs/Authentication';
 import { withCartProvider } from './hocs/Cart';
 import Cart from "./components/Cart/Cart";
+import {withRouter} from "./hocs/Router";
 
 const { Header, Footer, Content } = Layout;
 
@@ -24,40 +25,38 @@ const SiteLayoutContent = styled.div`
   min-height: 280px;
 `
 
-function App() {
+export function App() {
 
   return (
-      <Router>
-        <Layout>
-          <Header>
-            <Navigation />
-          </Header>
-          <Content style={{ padding: '0 50px' }}>
-            <SiteLayoutContent>
-              <Route exact path={ ROUTES.LANDING }>
-                <Home />
-              </Route>
+      <Layout>
+        <Header>
+          <Navigation />
+        </Header>
+        <Content style={{ padding: '0 50px' }}>
+          <SiteLayoutContent>
+            <Route exact path={ ROUTES.LANDING }>
+              <Home />
+            </Route>
 
-              <Route path={ ROUTES.SIGN_IN }>
-                  <Signin />
-              </Route>
-              <Route path={ ROUTES.SIGN_UP }>
-                <Signup />
-              </Route>
-              <Route path={ ROUTES.CART }>
-                <Cart />
-              </Route>
+            <Route path={ ROUTES.SIGN_IN }>
+                <Signin />
+            </Route>
+            <Route path={ ROUTES.SIGN_UP }>
+              <Signup />
+            </Route>
+            <Route path={ ROUTES.CART }>
+              <Cart />
+            </Route>
 
-            </SiteLayoutContent>
+          </SiteLayoutContent>
 
 
-          </Content>
-          <Footer>
+        </Content>
+        <Footer>
 
-          </Footer>
-        </Layout>
-      </Router>
+        </Footer>
+      </Layout>
   );
 }
 
-export default withAuthProvider(withCartProvider(App));
+export default withAuthProvider(withCartProvider(withRouter(App)));

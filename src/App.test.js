@@ -17,5 +17,4 @@ describe("App", () => {
   it('renders without crashing', () => {
     ReactDOM.render(<App />, container);
   });
-
 })
